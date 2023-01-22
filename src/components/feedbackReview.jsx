@@ -11,9 +11,9 @@ function ReviewFeedback() {
     useEffect(() => {
         axios({
             method: 'GET',
-            url: '/review'
+            url: '/feedback'
         }).then ((response) => {
-            console.log('response from GET', response);
+            console.log('response from GET', response.data);
             dispatch({
                 type: 'SET_FEEDBACK_FOR_REVIEW',
                 payload: response.data
@@ -23,24 +23,15 @@ function ReviewFeedback() {
         })
     }, [])
 
-    // const dispatch = useDispatch();
-
-    // const submitFeedback = () => {
-    //     dispatch({
-    //         type: 'SUBMIT_FEEDBACK'
-    //     })
-    // }
-
     return (
         <>
-            {/* here is where the review part will go for rendering */}
             <h5>Review Feedback</h5>
             <ul>
                 {feedback.map((feedback, id) => {
                     return <li key={id}>{feedback.feeling}</li>
                 })}
             </ul>
-            {/* <button onClick = {submitFeedback}>Submit</button> */}
+            <button>Submit</button>
         </>
     )
 }

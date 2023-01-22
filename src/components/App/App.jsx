@@ -1,7 +1,6 @@
 import React from 'react';
-import axios from 'axios';
+import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import './App.css';
-import { useSelector } from 'react-redux';
 import ReviewFeedback from '../feedbackReview.jsx'
 import FeelingForm from '../feeling';
 import UnderstandingForm from '../understanding';
@@ -10,25 +9,36 @@ import CommentForm from '../comment';
 
 function App() {
 
-  //this is the component that hooks into dogs' state so
-  //I can use it here and in components
-  // const dogs = useSelector((store) => store.dogs);
-
   return (
+    <Router>
     <div className='App'>
       <header className='App-header'>
         <h1 className='App-title'>Feedback!</h1>
         <h4>Don't forget it!</h4>
       </header>
       <div>
-        <FeelingForm />
-        <UnderstandingForm />
-        <SupportForm />
-        <CommentForm />
+        <Route exact path="/">
+          <FeelingForm />
+        </Route>
 
-        {/* <ReviewFeedback /> */}
+        <Route exact path="/understanding">
+          <UnderstandingForm />
+        </Route>
+
+        <Route exact path="/support">
+          <SupportForm />
+        </Route>
+
+        <Route exact path="/comment">
+          <CommentForm />
+        </Route>
+
+        <Route exact path="/review">
+          <ReviewFeedback />
+        </Route>
       </div>
     </div>
+    </Router>
   );
 }
 

@@ -36,6 +36,66 @@ const feelingScore = (state=[], action) => {
     return state;
 }
 
+const understandingScore = (state=[], action) => {
+    if (action.type === 'ADD_UNDERSTANDING_SCORE') {
+        console.log('in ADD understanding', action)
+        const newUnderstandingScore = action.payload;
+        const newUnderstandingId = state.length + 1;
+
+        const newUnderstanding = {
+            id: newUnderstandingId,
+            understanding: newUnderstandingScore
+        }
+
+        let newUnderstandingArray = [...state]
+        
+        newUnderstandingArray.push(newUnderstanding)
+        
+        return newUnderstandingArray;
+    }
+    return state;
+}
+
+const supportScore = (state=[], action) => {
+    if (action.type === 'ADD_SUPPORT_SCORE') {
+        console.log('in ADD support', action)
+        const newSupportScore = action.payload;
+        const newSupportId = state.length + 1;
+
+        const newSupport = {
+            id: newSupportId,
+            support: newSupportScore
+        }
+
+        let newSupportArray = [...state]
+        
+        newSupportArray.push(newSupport)
+        
+        return newSupportArray;
+    }
+    return state;
+}
+
+const commentScore = (state=[], action) => {
+    if (action.type === 'ADD_COMMENT_SCORE') {
+        console.log('in ADD Comment', action)
+        const newCommentScore = action.payload;
+        const newCommentId = state.length + 1;
+
+        const newComment = {
+            id: newCommentId,
+            Comment: newCommentScore
+        }
+
+        let newCommentArray = [...state]
+        
+        newCommentArray.push(newComment)
+        
+        return newCommentArray;
+    }
+    return state;
+}
+
 const feedback = (state=[], action) => {
     switch (action.type) {
         case 'SET_FEEDBACK_FOR_REVIEW':
@@ -49,6 +109,9 @@ const feedback = (state=[], action) => {
 const reduxStore = createStore(
     combineReducers({
         feelingScore,
+        understandingScore,
+        supportScore,
+        commentScore,
         feedback   
     }),
     applyMiddleware(

@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 function UnderstandingForm() {
     const [understandingScoreInput, setUnderstandingScoreInput] = useState('')
 
     const dispatch = useDispatch();
+
+    const history = useHistory();
 
     const addUnderstandingScore = (event) => {
         event.preventDefault();
@@ -12,6 +15,7 @@ function UnderstandingForm() {
             type: 'ADD_UNDERSTANDING_SCORE',
             payload: understandingScoreInput
         })
+        history.push('/support')
     }
 
     return (
@@ -21,16 +25,13 @@ function UnderstandingForm() {
             <label>
                 Understanding?
                 <input
-                    score="score"
                     type="number" 
                     value={understandingScoreInput}
                     onChange={(event) => setUnderstandingScoreInput(event.target.value)}
-                    />
+                require />
             </label>
-            <button>Submit</button>
+            <button type="submit">Submit</button>
         </form>
-        
-        <button>Next</button>
         </>
     )
 }

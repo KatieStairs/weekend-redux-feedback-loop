@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom'
 
 function FeelingForm() {
     const [feelingScoreInput, setFeelingScoreInput] = useState('')
 
     const dispatch = useDispatch();
+
+    const history = useHistory();
 
     const addFeelingScore = (event) => {
         event.preventDefault();
@@ -12,7 +15,8 @@ function FeelingForm() {
             type: 'ADD_FEELING_SCORE',
             payload: feelingScoreInput
         })
-    }
+        history.push('/understanding')
+}
 
     return (
         <>
@@ -21,16 +25,13 @@ function FeelingForm() {
             <label>
                 Feeling?
                 <input
-                    score="score"
                     type="number" 
                     value={feelingScoreInput}
                     onChange={(event) => setFeelingScoreInput(event.target.value)}
-                    />
+                required />
             </label>
-            <button>Submit</button>
+            <button type="submit">Next</button>
         </form>
-        
-        <button>Next</button>
         </>
     )
 }
